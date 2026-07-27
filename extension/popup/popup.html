@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TermsGuard AI</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo-text">TermsGuard <span class="logo-ai">AI</span></span>
+    </div>
+    <div class="header-right">
+      <button class="icon-btn" id="historyBtn" title="Historial">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+      </button>
+      <button class="settings-btn" id="settingsBtn" title="Configuración">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main views (one shown at a time) -->
+
+  <!-- VIEW: Home -->
+  <div id="viewHome" class="view active">
+    <div class="hero">
+      <div class="hero-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <p class="hero-text" data-i18n="hero_text">Analiza los Términos y Condiciones de esta página con IA</p>
+    </div>
+
+    <!-- Mode selector -->
+    <div class="mode-selector">
+      <button class="mode-btn active" data-mode="quick">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span data-i18n="mode_quick">Rápido</span>
+      </button>
+      <button class="mode-btn active-default" data-mode="balanced">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+        </svg>
+        <span data-i18n="mode_balanced">Equilibrado</span>
+      </button>
+      <button class="mode-btn" data-mode="deep">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <span data-i18n="mode_deep">Profundo</span>
+      </button>
+    </div>
+    <div class="mode-desc" id="modeDesc"></div>
+
+    <button class="btn-primary" id="analyzeBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 12l2 2 4-4"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+      <span data-i18n="btn_analyze">Analizar esta página</span>
+    </button>
+
+    <button class="btn-secondary" id="explain12Btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 22C6 17 2 13 2 8a5 5 0 0 1 10 0 5 5 0 0 1 10 0c0 5-4 9-10 14z" stroke-linecap="round"/>
+      </svg>
+      <span data-i18n="btn_explain12">Explicar como si tuviera 12 años</span>
+    </button>
+
+    <div class="page-status" id="pageStatus"></div>
+  </div>
+
+  <!-- VIEW: Loading -->
+  <div id="viewLoading" class="view">
+    <div class="loading-container">
+      <div class="loading-shield">
+        <svg class="shield-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      </div>
+      <div class="loading-text" id="loadingText" data-i18n="loading_extracting">Extrayendo texto...</div>
+      <div class="loading-bar">
+        <div class="loading-fill" id="loadingFill" style="width:10%"></div>
+      </div>
+      <div class="loading-sub" id="loadingSub" data-i18n="loading_sub">Preparando análisis con IA</div>
+      <button class="btn-secondary" id="cancelBtn" data-i18n="btn_cancel">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- VIEW: Results -->
+  <div id="viewResults" class="view">
+
+    <!-- Risk score -->
+    <div class="score-section">
+      <div class="score-ring-container">
+        <div class="score-ring-wrapper">
+          <svg class="score-ring" viewBox="0 0 100 100">
+            <circle class="score-ring-bg" cx="50" cy="50" r="40" fill="none" stroke-width="8"/>
+            <circle class="score-ring-fill" cx="50" cy="50" r="40" fill="none" stroke-width="8"
+                    stroke-dasharray="251.2" stroke-dashoffset="251.2" id="scoreCircle"/>
+          </svg>
+          <div class="score-value" id="scoreValue">—</div>
+        </div>
+        <div class="score-label" data-i18n="score_label">Riesgo</div>
+      </div>
+      <div class="score-meta">
+        <div class="score-site" id="scoreSite">—</div>
+        <div class="score-verdict" id="scoreVerdict">—</div>
+        <div class="score-actions">
+          <button class="mini-btn" id="newAnalysisBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.42"/>
+            </svg>
+            <span data-i18n="btn_new">Nuevo</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" data-tab="summary" data-i18n="tab_summary">📄 Resumen</button>
+      <button class="tab" data-tab="risks" data-i18n="tab_risks">⚠️ Riesgos</button>
+      <button class="tab" data-tab="detail" data-i18n="tab_detail">🔍 Detalle</button>
+    </div>
+
+    <!-- Tab: Summary -->
+    <div class="tab-content active" id="tabSummary">
+      <div class="summary-intro" id="summaryIntro"></div>
+      <ul class="bullet-list" id="summaryBullets"></ul>
+    </div>
+
+    <!-- Tab: Risks -->
+    <div class="tab-content" id="tabRisks">
+      <div class="risks-list" id="risksList"></div>
+    </div>
+
+    <!-- Tab: Detail -->
+    <div class="tab-content" id="tabDetail">
+      <div class="detail-content" id="detailContent"></div>
+    </div>
+
+  </div>
+
+  <!-- VIEW: Error -->
+  <div id="viewError" class="view">
+    <div class="error-container">
+      <div class="error-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+      </div>
+      <div class="error-title" id="errorTitle" data-i18n="error_default_title">Algo salió mal</div>
+      <div class="error-message" id="errorMessage"></div>
+      <button class="btn-primary" id="retryBtn" data-i18n="btn_retry">Reintentar</button>
+      <button class="btn-secondary" id="backBtn" data-i18n="btn_back">Volver</button>
+    </div>
+  </div>
+
+  <!-- VIEW: Onboarding -->
+  <div id="viewOnboarding" class="view">
+    <div class="onboarding">
+      <div class="onboarding-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h2 class="onboarding-title" data-i18n="ob_title">Configura tu clave de IA</h2>
+      <p class="onboarding-desc" data-i18n="ob_desc">TermsGuard usa tu propia API key. Tus documentos nunca pasan por nuestros servidores.</p>
+
+      <div class="onboarding-steps">
+        <div class="ob-step">
+          <span class="ob-num">1</span>
+          <span><span data-i18n="ob_step1">Entra a</span> <a class="ext-link" data-url="https://aistudio.google.com/apikey">aistudio.google.com</a></span>
+        </div>
+        <div class="ob-step">
+          <span class="ob-num">2</span>
+          <span><span data-i18n="ob_step2_pre">Haz click en</span> <strong>Get API key</strong> <span class="ob-free" data-i18n="ob_step2_free">(gratis, solo necesitas cuenta Google)</span></span>
+        </div>
+        <div class="ob-step">
+          <span class="ob-num">3</span>
+          <span data-i18n="ob_step3">Copia y pega tu clave aquí abajo</span>
+        </div>
+      </div>
+
+      <div class="ob-input-group">
+        <input type="password" id="onboardingKey" class="setting-input" placeholder="AIzaSy..." data-i18n-placeholder="ob_placeholder">
+        <button class="btn-primary" id="onboardingSaveBtn" data-i18n="ob_btn_start">Comenzar →</button>
+      </div>
+      <div class="ob-status" id="obStatus"></div>
+
+      <div class="ob-alt">
+        <span class="ob-alt-text" data-i18n="ob_alt_text">¿Tienes clave de OpenAI o Anthropic?</span>
+        <button class="ob-alt-link" id="obOtherProviderBtn" data-i18n="ob_alt_link">Configurar otro proveedor</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW: Settings -->
+  <div id="viewSettings" class="view">
+    <div class="settings-header">
+      <button class="back-btn" id="settingsBackBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+      <h2 data-i18n="settings_title">Configuración</h2>
+    </div>
+
+    <div class="settings-form">
+      <div class="setting-group">
+        <label class="setting-label" data-i18n="settings_provider">Proveedor de IA</label>
+        <select id="providerSelect" class="setting-input">
+          <option value="gemini" data-i18n="provider_gemini">Gemini (Google) — Gratuito</option>
+          <option value="openai" data-i18n="provider_openai">OpenAI — GPT-4o mini</option>
+          <option value="anthropic" data-i18n="provider_anthropic">Anthropic — Claude Haiku</option>
+        </select>
+      </div>
+
+      <div class="setting-group">
+        <label class="setting-label" data-i18n="settings_apikey">API Key</label>
+        <input type="password" id="apiKeyInput" class="setting-input" placeholder="Tu clave API..." data-i18n-placeholder="apikey_placeholder">
+        <div class="setting-hint" id="apiKeyHint"></div>
+      </div>
+
+      <div class="setting-group">
+        <label class="setting-label" data-i18n="settings_language">Idioma de la extensión</label>
+        <select id="languageSelect" class="setting-input">
+          <option value="es">Español</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+
+      <div class="setting-group">
+        <label class="setting-label" data-i18n="settings_autodetect">Detección automática</label>
+        <div class="toggle-row">
+          <span class="toggle-desc" data-i18n="settings_autodetect_desc">Detectar páginas legales al cargar</span>
+          <label class="toggle">
+            <input type="checkbox" id="autoDetect">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <button class="btn-primary" id="saveSettingsBtn" data-i18n="btn_save">Guardar configuración</button>
+      <div class="settings-status" id="settingsStatus"></div>
+    </div>
+  </div>
+
+  <!-- VIEW: History -->
+  <div id="viewHistory" class="view">
+    <div class="settings-header">
+      <button class="back-btn" id="historyBackBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+      <h2 style="flex:1" data-i18n="history_title">Historial</h2>
+      <button class="icon-btn" id="clearHistoryBtn" title="Limpiar historial">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="3 6 5 6 21 6"/>
+          <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/>
+        </svg>
+      </button>
+    </div>
+    <div class="history-list" id="historyList"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

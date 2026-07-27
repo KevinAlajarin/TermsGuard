@@ -1,0 +1,26 @@
+# Dependencies
+backend/node_modules/
+
+# Environment variables (contain secrets)
+backend/.env
+.env
+*.env
+
+# Chrome extension private key and compiled binary
+extension.pem
+extension.crx
+
+# Claude Code internal settings
+.claude/
+memory/
+
+# Internal dev docs
+IMAGENES_CLAUDE/
+LEERPARAUSAR.md
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+*.zip
