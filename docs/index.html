@@ -267,6 +267,10 @@
         if (s[key] !== undefined) el.innerHTML = s[key];
       });
 
+      // Pass language via URL param so privacy policy opens in the correct language
+      document.querySelectorAll('a[href^="privacy-policy"]').forEach(a => {
+        a.href = `privacy-policy.html?lang=${lang}`;
+      });
     }
 
     document.getElementById('langBtn').addEventListener('click', () => {

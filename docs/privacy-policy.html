@@ -27,17 +27,20 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      color: #64748b;
+      color: #94a3b8;
       text-decoration: none;
       font-size: 14px;
       font-weight: 500;
-      padding: 8px 12px;
+      padding: 8px 14px;
       border-radius: 8px;
-      transition: background 0.15s, color 0.15s;
+      border: 1px solid #334155;
+      background: #1e293b;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
     }
     .back-btn:hover {
-      background: #1e293b;
-      color: #e2e8f0;
+      background: #334155;
+      color: #f1f5f9;
+      border-color: #475569;
     }
     .back-btn svg {
       width: 16px;
@@ -289,7 +292,8 @@
       }
     };
 
-    let currentLang = localStorage.getItem('tg_lang') || 'en';
+    const urlLang = new URLSearchParams(window.location.search).get('lang');
+    let currentLang = urlLang || localStorage.getItem('tg_lang') || 'en';
 
     function applyLang(lang) {
       currentLang = lang;
