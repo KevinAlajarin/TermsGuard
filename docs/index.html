@@ -28,19 +28,41 @@
       font-size: 18px;
       font-weight: 700;
       color: #f8fafc;
+      text-decoration: none;
     }
     .logo-icon {
       width: 36px;
       height: 36px;
       border-radius: 8px;
     }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
     nav a {
       color: #64748b;
       text-decoration: none;
       font-size: 14px;
-      margin-left: 24px;
+      margin-left: 16px;
     }
     nav a:hover { color: #e2e8f0; }
+    .lang-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #94a3b8;
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      margin-left: 16px;
+    }
+    .lang-btn:hover {
+      background: #334155;
+      color: #e2e8f0;
+    }
     main {
       flex: 1;
       display: flex;
@@ -136,57 +158,123 @@
 <body>
 
   <header>
-    <div class="logo">
+    <a class="logo" href="#">
       <img class="logo-icon" src="icon128.png" alt="TermsGuard AI">
       TermsGuard AI
-    </div>
+    </a>
     <nav>
-      <a href="https://github.com/KevinAlajarin/TermsGuard" target="_blank">GitHub</a>
-      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="https://github.com/KevinAlajarin/TermsGuard" target="_blank" data-i18n="nav_github">GitHub</a>
+      <a href="privacy-policy.html" data-i18n="nav_privacy">Privacy Policy</a>
+      <button class="lang-btn" id="langBtn">ES</button>
     </nav>
   </header>
 
   <main>
-    <div class="badge">Free Chrome Extension</div>
-    <h1>Understand what you<br><span>actually agree to</span></h1>
-    <p class="subtitle">
-      TermsGuard AI analyzes Terms & Conditions and Privacy Policies using AI — detecting risky clauses in seconds, in plain language.
+    <div class="badge" data-i18n="badge">Free Chrome Extension</div>
+    <h1 data-i18n-html="headline">Understand what you<br><span>actually agree to</span></h1>
+    <p class="subtitle" data-i18n="subtitle">
+      TermsGuard AI analyzes Terms &amp; Conditions and Privacy Policies using AI — detecting risky clauses in seconds, in plain language.
     </p>
     <a class="cta" href="https://chromewebstore.google.com/detail/termsguard-ai" target="_blank">
-      🧩 Add to Chrome — It's Free
+      🧩 <span data-i18n="cta">Add to Chrome — It's Free</span>
     </a>
 
     <div class="features">
       <div class="feature">
         <div class="feature-icon">🔑</div>
-        <div class="feature-title">Bring your own key</div>
-        <div class="feature-desc">Your documents never pass through our servers</div>
+        <div class="feature-title" data-i18n="f1_title">Bring your own key</div>
+        <div class="feature-desc" data-i18n="f1_desc">Your documents never pass through our servers</div>
       </div>
       <div class="feature">
         <div class="feature-icon">⚡</div>
-        <div class="feature-title">3 analysis modes</div>
-        <div class="feature-desc">Quick, Balanced, or Deep — you choose the depth</div>
+        <div class="feature-title" data-i18n="f2_title">3 analysis modes</div>
+        <div class="feature-desc" data-i18n="f2_desc">Quick, Balanced, or Deep — you choose the depth</div>
       </div>
       <div class="feature">
         <div class="feature-icon">🌐</div>
-        <div class="feature-title">ES / EN</div>
-        <div class="feature-desc">Full bilingual support, results in your language</div>
+        <div class="feature-title" data-i18n="f3_title">ES / EN</div>
+        <div class="feature-desc" data-i18n="f3_desc">Full bilingual support, results in your language</div>
       </div>
       <div class="feature">
         <div class="feature-icon">📋</div>
-        <div class="feature-title">Analysis history</div>
-        <div class="feature-desc">Keep track of the last 5 pages you analyzed</div>
+        <div class="feature-title" data-i18n="f4_title">Analysis history</div>
+        <div class="feature-desc" data-i18n="f4_desc">Keep track of the last 5 pages you analyzed</div>
       </div>
     </div>
   </main>
 
   <footer>
-    <span>© 2026 TermsGuard AI — Open Source</span>
+    <span data-i18n="footer_copy">© 2026 TermsGuard AI — Open Source</span>
     <span>
-      <a href="privacy-policy.html">Privacy Policy</a> ·
+      <a href="privacy-policy.html" data-i18n="nav_privacy">Privacy Policy</a> ·
       <a href="https://github.com/KevinAlajarin/TermsGuard" target="_blank">GitHub</a>
     </span>
   </footer>
+
+  <script>
+    const STRINGS = {
+      en: {
+        nav_github:   'GitHub',
+        nav_privacy:  'Privacy Policy',
+        badge:        'Free Chrome Extension',
+        headline:     'Understand what you<br><span>actually agree to</span>',
+        subtitle:     'TermsGuard AI analyzes Terms & Conditions and Privacy Policies using AI — detecting risky clauses in seconds, in plain language.',
+        cta:          'Add to Chrome — It\'s Free',
+        f1_title:     'Bring your own key',
+        f1_desc:      'Your documents never pass through our servers',
+        f2_title:     '3 analysis modes',
+        f2_desc:      'Quick, Balanced, or Deep — you choose the depth',
+        f3_title:     'ES / EN',
+        f3_desc:      'Full bilingual support, results in your language',
+        f4_title:     'Analysis history',
+        f4_desc:      'Keep track of the last 5 pages you analyzed',
+        footer_copy:  '© 2026 TermsGuard AI — Open Source',
+      },
+      es: {
+        nav_github:   'GitHub',
+        nav_privacy:  'Política de Privacidad',
+        badge:        'Extensión gratuita para Chrome',
+        headline:     'Entendé lo que<br><span>realmente aceptás</span>',
+        subtitle:     'TermsGuard AI analiza Términos y Condiciones y Políticas de Privacidad con IA — detecta cláusulas problemáticas en segundos, en lenguaje simple.',
+        cta:          'Agregar a Chrome — Es gratis',
+        f1_title:     'Usá tu propia clave',
+        f1_desc:      'Tus documentos nunca pasan por nuestros servidores',
+        f2_title:     '3 modos de análisis',
+        f2_desc:      'Rápido, Equilibrado o Profundo — vos elegís la profundidad',
+        f3_title:     'ES / EN',
+        f3_desc:      'Soporte bilingüe completo, resultados en tu idioma',
+        f4_title:     'Historial de análisis',
+        f4_desc:      'Guardá los últimos 5 análisis que hiciste',
+        footer_copy:  '© 2026 TermsGuard AI — Código abierto',
+      }
+    };
+
+    let currentLang = localStorage.getItem('tg_lang') || 'en';
+
+    function applyLang(lang) {
+      currentLang = lang;
+      localStorage.setItem('tg_lang', lang);
+      document.documentElement.lang = lang;
+      document.getElementById('langBtn').textContent = lang === 'en' ? 'ES' : 'EN';
+
+      const s = STRINGS[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (s[key] !== undefined) el.textContent = s[key];
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.dataset.i18nHtml;
+        if (s[key] !== undefined) el.innerHTML = s[key];
+      });
+
+    }
+
+    document.getElementById('langBtn').addEventListener('click', () => {
+      applyLang(currentLang === 'en' ? 'es' : 'en');
+    });
+
+    applyLang(currentLang);
+  </script>
 
 </body>
 </html>

@@ -17,11 +17,38 @@
       max-width: 720px;
       margin: 0 auto;
     }
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #64748b;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .back-btn:hover {
+      background: #1e293b;
+      color: #e2e8f0;
+    }
+    .back-btn svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+    }
     .logo {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin-bottom: 40px;
+      text-decoration: none;
     }
     .logo-icon {
       width: 40px;
@@ -29,9 +56,24 @@
       border-radius: 10px;
     }
     .logo-text {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 700;
       color: #f8fafc;
+    }
+    .lang-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #94a3b8;
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    .lang-btn:hover {
+      background: #334155;
+      color: #e2e8f0;
     }
     h1 {
       font-size: 28px;
@@ -92,9 +134,7 @@
       color: #818cf8;
       text-decoration: none;
     }
-    a:hover {
-      text-decoration: underline;
-    }
+    a:hover { text-decoration: underline; }
     footer {
       margin-top: 60px;
       padding-top: 24px;
@@ -102,68 +142,178 @@
       font-size: 13px;
       color: #475569;
     }
+    footer a { color: #475569; }
+    footer a:hover { color: #94a3b8; }
   </style>
 </head>
 <body>
   <div class="container">
 
-    <div class="logo">
-      <img class="logo-icon" src="icon128.png" alt="TermsGuard AI">
-      <span class="logo-text">TermsGuard AI</span>
+    <div class="top-bar">
+      <a class="back-btn" href="index.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        <span data-i18n="back">Back</span>
+      </a>
+
+      <a class="logo" href="index.html">
+        <img class="logo-icon" src="icon128.png" alt="TermsGuard AI">
+        <span class="logo-text">TermsGuard AI</span>
+      </a>
+
+      <button class="lang-btn" id="langBtn">ES</button>
     </div>
 
-    <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: July 2026</p>
+    <h1 data-i18n="title">Privacy Policy</h1>
+    <p class="updated" data-i18n="updated">Last updated: July 2026</p>
 
     <div class="highlight">
-      <p><strong>Short version:</strong> TermsGuard AI has no servers. Your API key and the page content you analyze never pass through us — they go directly from your browser to the AI provider you choose. We collect nothing.</p>
+      <p><strong data-i18n="highlight_label">Short version:</strong> <span data-i18n="highlight_text">TermsGuard AI has no servers. Your API key and the page content you analyze never pass through us — they go directly from your browser to the AI provider you choose. We collect nothing.</span></p>
     </div>
 
-    <h2>1. What data is stored on your device</h2>
-    <p>TermsGuard AI stores the following data locally in your browser using <code>chrome.storage.local</code>. This data never leaves your device and is never accessible to us:</p>
+    <h2 data-i18n="s1_title">1. What data is stored on your device</h2>
+    <p data-i18n="s1_p">TermsGuard AI stores the following data locally in your browser using chrome.storage.local. This data never leaves your device and is never accessible to us:</p>
     <ul>
-      <li>Your AI provider API key (Gemini, OpenAI, or Anthropic)</li>
-      <li>Your preferences: language, analysis mode, and auto-detection setting</li>
-      <li>Your analysis history (up to 5 recent results)</li>
+      <li data-i18n="s1_li1">Your AI provider API key (Gemini, OpenAI, or Anthropic)</li>
+      <li data-i18n="s1_li2">Your preferences: language, analysis mode, and auto-detection setting</li>
+      <li data-i18n="s1_li3">Your analysis history (up to 5 recent results)</li>
     </ul>
 
-    <h2>2. What data is sent to third parties</h2>
-    <p>When you click "Analyze", the text content of the legal page you are viewing is sent directly from your browser to the AI provider you have configured (Google Gemini, OpenAI, or Anthropic). This request is made using your own API key.</p>
+    <h2 data-i18n="s2_title">2. What data is sent to third parties</h2>
+    <p data-i18n="s2_p">When you click "Analyze", the text content of the legal page you are viewing is sent directly from your browser to the AI provider you have configured (Google Gemini, OpenAI, or Anthropic). This request is made using your own API key.</p>
     <ul>
-      <li>We have no visibility into this request — it goes directly from your browser to the provider</li>
-      <li>The data transmitted is governed by the privacy policy of the provider you chose</li>
-      <li>No analysis is triggered automatically — only when you explicitly press "Analyze"</li>
+      <li data-i18n="s2_li1">We have no visibility into this request — it goes directly from your browser to the provider</li>
+      <li data-i18n="s2_li2">The data transmitted is governed by the privacy policy of the provider you chose</li>
+      <li data-i18n="s2_li3">No analysis is triggered automatically — only when you explicitly press "Analyze"</li>
     </ul>
 
-    <h2>3. What we do not collect</h2>
+    <h2 data-i18n="s3_title">3. What we do not collect</h2>
     <ul>
-      <li>We do not have any servers or backend infrastructure</li>
-      <li>We do not collect usage analytics, crash reports, or telemetry</li>
-      <li>We do not identify users or track behavior across sites</li>
-      <li>We do not sell, share, or monetize any data</li>
+      <li data-i18n="s3_li1">We do not have any servers or backend infrastructure</li>
+      <li data-i18n="s3_li2">We do not collect usage analytics, crash reports, or telemetry</li>
+      <li data-i18n="s3_li3">We do not identify users or track behavior across sites</li>
+      <li data-i18n="s3_li4">We do not sell, share, or monetize any data</li>
     </ul>
 
-    <h2>4. Permissions used and why</h2>
+    <h2 data-i18n="s4_title">4. Permissions used and why</h2>
     <ul>
-      <li><strong>storage</strong> — to save your API key, preferences, and history locally on your device</li>
-      <li><strong>activeTab</strong> — to read the URL and title of the tab you are on</li>
-      <li><strong>scripting</strong> — to extract the text content of the legal page when you request an analysis</li>
-      <li><strong>host_permissions (&lt;all_urls&gt;)</strong> — required to detect legal pages on any website and to run the text extraction script on the active tab</li>
+      <li data-i18n="s4_li1"><strong>storage</strong> — to save your API key, preferences, and history locally on your device</li>
+      <li data-i18n="s4_li2"><strong>activeTab</strong> — to read the URL and title of the tab you are on</li>
+      <li data-i18n="s4_li3"><strong>scripting</strong> — to extract the text content of the legal page when you request an analysis</li>
+      <li data-i18n="s4_li4"><strong>host_permissions (&lt;all_urls&gt;)</strong> — required to detect legal pages on any website and to run the text extraction script on the active tab</li>
     </ul>
 
-    <h2>5. Children's privacy</h2>
-    <p>TermsGuard AI is not directed at children under 13. We do not knowingly collect any information from children.</p>
+    <h2 data-i18n="s5_title">5. Children's privacy</h2>
+    <p data-i18n="s5_p">TermsGuard AI is not directed at children under 13. We do not knowingly collect any information from children.</p>
 
-    <h2>6. Changes to this policy</h2>
-    <p>If we make material changes to this policy, we will update the "Last updated" date above. Continued use of the extension after changes constitutes acceptance of the updated policy.</p>
+    <h2 data-i18n="s6_title">6. Changes to this policy</h2>
+    <p data-i18n="s6_p">If we make material changes to this policy, we will update the "Last updated" date above. Continued use of the extension after changes constitutes acceptance of the updated policy.</p>
 
-    <h2>7. Contact</h2>
-    <p>If you have questions about this privacy policy, you can reach us at: <a href="mailto:alajarinkevin@hotmail.com">alajarinkevin@hotmail.com</a></p>
+    <h2 data-i18n="s7_title">7. Contact</h2>
+    <p data-i18n-html="s7_p">If you have questions about this privacy policy, you can reach us at: <a href="mailto:alajarinkevin@hotmail.com">alajarinkevin@hotmail.com</a></p>
 
     <footer>
-      TermsGuard AI is open source — <a href="https://github.com/KevinAlajarin/TermsGuard" target="_blank">github.com/KevinAlajarin/TermsGuard</a>
+      TermsGuard AI — <a href="https://github.com/KevinAlajarin/TermsGuard" target="_blank">github.com/KevinAlajarin/TermsGuard</a>
     </footer>
 
   </div>
+
+  <script>
+    const STRINGS = {
+      en: {
+        back:             'Back',
+        title:            'Privacy Policy',
+        updated:          'Last updated: July 2026',
+        highlight_label:  'Short version:',
+        highlight_text:   'TermsGuard AI has no servers. Your API key and the page content you analyze never pass through us — they go directly from your browser to the AI provider you choose. We collect nothing.',
+        s1_title: '1. What data is stored on your device',
+        s1_p:     'TermsGuard AI stores the following data locally in your browser using chrome.storage.local. This data never leaves your device and is never accessible to us:',
+        s1_li1:   'Your AI provider API key (Gemini, OpenAI, or Anthropic)',
+        s1_li2:   'Your preferences: language, analysis mode, and auto-detection setting',
+        s1_li3:   'Your analysis history (up to 5 recent results)',
+        s2_title: '2. What data is sent to third parties',
+        s2_p:     'When you click "Analyze", the text content of the legal page you are viewing is sent directly from your browser to the AI provider you have configured (Google Gemini, OpenAI, or Anthropic). This request is made using your own API key.',
+        s2_li1:   'We have no visibility into this request — it goes directly from your browser to the provider',
+        s2_li2:   'The data transmitted is governed by the privacy policy of the provider you chose',
+        s2_li3:   'No analysis is triggered automatically — only when you explicitly press "Analyze"',
+        s3_title: '3. What we do not collect',
+        s3_li1:   'We do not have any servers or backend infrastructure',
+        s3_li2:   'We do not collect usage analytics, crash reports, or telemetry',
+        s3_li3:   'We do not identify users or track behavior across sites',
+        s3_li4:   'We do not sell, share, or monetize any data',
+        s4_title: '4. Permissions used and why',
+        s4_li1:   '<strong>storage</strong> — to save your API key, preferences, and history locally on your device',
+        s4_li2:   '<strong>activeTab</strong> — to read the URL and title of the tab you are on',
+        s4_li3:   '<strong>scripting</strong> — to extract the text content of the legal page when you request an analysis',
+        s4_li4:   '<strong>host_permissions (&lt;all_urls&gt;)</strong> — required to detect legal pages on any website and to run the text extraction script on the active tab',
+        s5_title: '5. Children\'s privacy',
+        s5_p:     'TermsGuard AI is not directed at children under 13. We do not knowingly collect any information from children.',
+        s6_title: '6. Changes to this policy',
+        s6_p:     'If we make material changes to this policy, we will update the "Last updated" date above. Continued use of the extension after changes constitutes acceptance of the updated policy.',
+        s7_title: '7. Contact',
+        s7_p:     'If you have questions about this privacy policy, you can reach us at: <a href="mailto:alajarinkevin@hotmail.com">alajarinkevin@hotmail.com</a>',
+      },
+      es: {
+        back:             'Volver',
+        title:            'Política de Privacidad',
+        updated:          'Última actualización: julio de 2026',
+        highlight_label:  'Versión corta:',
+        highlight_text:   'TermsGuard AI no tiene servidores. Tu API key y el contenido de las páginas que analizás nunca pasan por nosotros — van directamente desde tu navegador al proveedor de IA que elegiste. No recopilamos nada.',
+        s1_title: '1. Qué datos se guardan en tu dispositivo',
+        s1_p:     'TermsGuard AI almacena los siguientes datos localmente en tu navegador usando chrome.storage.local. Estos datos nunca salen de tu dispositivo y nunca son accesibles para nosotros:',
+        s1_li1:   'Tu API key del proveedor de IA (Gemini, OpenAI o Anthropic)',
+        s1_li2:   'Tus preferencias: idioma, modo de análisis y configuración de detección automática',
+        s1_li3:   'Tu historial de análisis (hasta 5 resultados recientes)',
+        s2_title: '2. Qué datos se envían a terceros',
+        s2_p:     'Cuando hacés clic en "Analizar", el contenido de texto de la página legal que estás viendo se envía directamente desde tu navegador al proveedor de IA que configuraste (Google Gemini, OpenAI o Anthropic). Esta solicitud se hace usando tu propia API key.',
+        s2_li1:   'No tenemos visibilidad sobre esta solicitud — va directamente desde tu navegador al proveedor',
+        s2_li2:   'Los datos transmitidos están regidos por la política de privacidad del proveedor que elegiste',
+        s2_li3:   'Ningún análisis se dispara automáticamente — solo cuando presionás "Analizar" explícitamente',
+        s3_title: '3. Qué no recopilamos',
+        s3_li1:   'No tenemos servidores ni infraestructura backend',
+        s3_li2:   'No recopilamos análisis de uso, reportes de errores ni telemetría',
+        s3_li3:   'No identificamos usuarios ni rastreamos comportamiento entre sitios',
+        s3_li4:   'No vendemos, compartimos ni monetizamos ningún dato',
+        s4_title: '4. Permisos utilizados y por qué',
+        s4_li1:   '<strong>storage</strong> — para guardar tu API key, preferencias e historial localmente en tu dispositivo',
+        s4_li2:   '<strong>activeTab</strong> — para leer la URL y el título de la pestaña en la que estás',
+        s4_li3:   '<strong>scripting</strong> — para extraer el contenido de texto de la página legal cuando solicitás un análisis',
+        s4_li4:   '<strong>host_permissions (&lt;all_urls&gt;)</strong> — necesario para detectar páginas legales en cualquier sitio web y ejecutar el script de extracción de texto en la pestaña activa',
+        s5_title: '5. Privacidad de menores',
+        s5_p:     'TermsGuard AI no está dirigido a menores de 13 años. No recopilamos intencionalmente información de niños.',
+        s6_title: '6. Cambios en esta política',
+        s6_p:     'Si realizamos cambios sustanciales en esta política, actualizaremos la fecha de "Última actualización" arriba. El uso continuo de la extensión después de los cambios implica la aceptación de la política actualizada.',
+        s7_title: '7. Contacto',
+        s7_p:     'Si tenés preguntas sobre esta política de privacidad, podés contactarnos en: <a href="mailto:alajarinkevin@hotmail.com">alajarinkevin@hotmail.com</a>',
+      }
+    };
+
+    let currentLang = localStorage.getItem('tg_lang') || 'en';
+
+    function applyLang(lang) {
+      currentLang = lang;
+      localStorage.setItem('tg_lang', lang);
+      document.documentElement.lang = lang;
+      document.getElementById('langBtn').textContent = lang === 'en' ? 'ES' : 'EN';
+
+      const s = STRINGS[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (s[key] !== undefined) el.textContent = s[key];
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.dataset.i18nHtml;
+        if (s[key] !== undefined) el.innerHTML = s[key];
+      });
+    }
+
+    document.getElementById('langBtn').addEventListener('click', () => {
+      applyLang(currentLang === 'en' ? 'es' : 'en');
+    });
+
+    applyLang(currentLang);
+  </script>
+
 </body>
 </html>
