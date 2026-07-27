@@ -100,6 +100,7 @@
       history_days:             'hace {n} d',
       history_clear_confirm:    '¿Borrar todo?',
       history_cleared:          'Historial borrado',
+      support_text:             '¿Te fue útil?',
     },
     en: {
       hero_text:                'Analyze the Terms and Conditions of this page with AI',
@@ -187,6 +188,7 @@
       history_days:             '{n} d ago',
       history_clear_confirm:    'Delete all?',
       history_cleared:          'History cleared',
+      support_text:             'Find it useful?',
     }
   };
 
